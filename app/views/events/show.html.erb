@@ -1,0 +1,9 @@
+<h1>Events Show</h1>
+
+<p>Name: <%= @event.name %></p>
+<p>Description: <%= @event.description %></p>
+<p>Occurred On: <%= @event.occurred_on %></p>
+<p>Slug: <%= @event.slug %></p>
+
+<%= link_to "Edit", edit_event_path(@event) %>
+<%= button_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
