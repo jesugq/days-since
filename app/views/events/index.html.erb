@@ -1,11 +1,13 @@
-<h1>Events Index</h1>
+<h1>Days Since</h1>
 
 <%= link_to "New Event", new_event_path %>
 
 <ul>
   <% @events.each do |event| %>
     <li>
-      <%= link_to event.name, event_path(event) %>
+      <%= link_to event_path(event) do %>
+        <strong><%= event.days_since %></strong> days since <%= event.name %>
+      <% end %>
     </li>
   <% end %>
 </ul>
