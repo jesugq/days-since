@@ -58,7 +58,7 @@ RSpec.describe "Events", type: :request do
   end
 
   describe "JSON format" do
-    it "GET /events.json returns events with days_since" do
+    it "GET /events.json returns events under root key with days_since" do
       event
       get events_path(format: :json)
       expect(response).to have_http_status(:success)
@@ -79,23 +79,23 @@ RSpec.describe "Events", type: :request do
       expect(body["meta"]["total_pages"]).to eq(1)
     end
 
-    it "GET /events/:slug.json returns event with days_since" do
+    it "GET /events/:slug.json returns event under root key with days_since" do
       get event_path(event, format: :json)
       expect(response).to have_http_status(:success)
       body = JSON.parse(response.body)
-      expect(body["name"]).to eq("Test Event")
-      expect(body["slug"]).to eq("test-event")
-      expect(body).to have_key("days_since")
+      expect(body["event"]["name"]).to eq("Test Event")
+      expect(body["event"]["slug"]).to eq("test-event")
+      expect(body["event"]).to have_key("days_since")
     end
 
-    it "POST /events.json creates and returns event with slug" do
+    it "POST /events.json creates and returns event under root key" do
       expect {
         post events_path(format: :json), params: { event: { name: "JSON Event", description: "Via API", occurred_on: Date.today } }
       }.to change(Event, :count).by(1)
       expect(response).to have_http_status(:created)
       body = JSON.parse(response.body)
-      expect(body["name"]).to eq("JSON Event")
-      expect(body["slug"]).to eq("json-event")
+      expect(body["event"]["name"]).to eq("JSON Event")
+      expect(body["event"]["slug"]).to eq("json-event")
     end
 
     it "POST /events.json with invalid data returns errors" do
@@ -105,11 +105,11 @@ RSpec.describe "Events", type: :request do
       expect(body).to have_key("errors")
     end
 
-    it "PATCH /events/:slug.json updates and returns event" do
+    it "PATCH /events/:slug.json updates and returns event under root key" do
       patch event_path(event, format: :json), params: { event: { name: "Updated via JSON" } }
       expect(response).to have_http_status(:success)
       body = JSON.parse(response.body)
-      expect(body["name"]).to eq("Updated via JSON")
+      expect(body["event"]["name"]).to eq("Updated via JSON")
     end
 
     it "DELETE /events/:slug.json destroys and returns no content" do
