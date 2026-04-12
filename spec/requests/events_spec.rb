@@ -23,13 +23,23 @@ RSpec.describe "Events", type: :request do
     expect(response).to have_http_status(:success)
   end
 
-  it "should create event" do
+  it "should create event with a slug" do
     post events_path, params: { event: { name: "Test Event", description: "Test Description", occurred_on: Date.today, slug: "test-event" } }
     expect(response).to have_http_status(:redirect)
   end
 
-  it "should update event" do
+  it "should create event without a slug" do
+    post events_path, params: { event: { name: "Test Event", description: "Test Description", occurred_on: Date.today } }
+    expect(response).to have_http_status(:redirect)
+  end
+
+  it "should update event with a slug" do
     patch event_path(event), params: { event: { name: "Updated Event", description: "Updated Description", occurred_on: Date.today, slug: "updated-event" } }
+    expect(response).to have_http_status(:redirect)
+  end
+
+  it "should update event without a slug" do
+    patch event_path(event), params: { event: { name: "Updated Event", description: "Updated Description", occurred_on: Date.today } }
     expect(response).to have_http_status(:redirect)
   end
 
