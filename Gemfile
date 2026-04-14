@@ -19,7 +19,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # JSON API resources for Rails [https://github.com/JSONAPI-Resources/jsonapi-resources]
-gem "jsonapi-resources", "0.9.12"
+gem "jsonapi-resources", "0.10.7"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
