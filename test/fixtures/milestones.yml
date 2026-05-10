@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  occurred_at: 2026-05-10
+  slug: MyString
+  event: one
+
+two:
+  name: MyString
+  description: MyString
+  occurred_at: 2026-05-10
+  slug: MyString
+  event: two
